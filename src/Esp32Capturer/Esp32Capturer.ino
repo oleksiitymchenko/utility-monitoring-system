@@ -5,8 +5,8 @@
 
 const char* ssid = "ASUS-HOME";
 const char* password = "5434202543420";
-int capture_interval = 300000; // Milisec between captures
-const char *post_url = "https://backendfunctions20200328192951.azurewebsites.net/api/Function1"; // Location where images are POSTED
+int capture_interval = 30000; // Milisecs 
+const char *post_url = "https://backendfunctions20200328192951.azurewebsites.net/api/Function1";
 
 bool internet_connected = false;
 long current_millis;
@@ -36,7 +36,7 @@ long last_capture_millis = 0;
 void setup()
 {
   Serial.begin(115200);
-  pinMode (FLASHLIGHT, OUTPUT);
+  pinMode(FLASHLIGHT, OUTPUT);
 
   if (init_wifi()) { // Connected to WiFi
     internet_connected = true;
@@ -168,6 +168,8 @@ static esp_err_t take_send_photo()
 
   esp_camera_fb_return(fb);
 }
+
+
 
 void loop()
 {
