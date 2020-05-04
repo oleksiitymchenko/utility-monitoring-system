@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Azure.Storage;
 using Microsoft.Azure.Storage.Blob;
 using Microsoft.Extensions.Options;
+using ServerlessApi;
 
 namespace BackendFunctions
 {
@@ -27,10 +28,18 @@ namespace BackendFunctions
             string microcontrollerId,
             ILogger log)
         {
-            log.LogInformation($"ContentLength: {req.ContentLength}");
+            if (string.IsNullOrEmpty(microcontrollerId))
+            {
+                var message = "Request does not contain controller id";
+                log.LogWarning(message);
+                return new ObjectResult(new ErrorModel { StatusCode = 400, Message = message }) { StatusCode = 400 };
+            }
+
             if (req.ContentLength <= 1)
             {
-                return new OkResult();
+                var message = $"[{microcontrollerId}] Request does not payload";
+                log.LogWarning(message);
+                return new ObjectResult(new ErrorModel { StatusCode = 400, Message = message }) { StatusCode = 400 };
             }
 
             var cloudAccount = CloudStorageAccount.Parse(_opt.StorageAccountConnectionString);
@@ -41,7 +50,6 @@ namespace BackendFunctions
             var ms = new MemoryStream();
             await req.Body.CopyToAsync(ms);
             var array = ms.ToArray();
-            log.LogInformation("Byte array length" + array.Length.ToString());
             await blob.UploadFromByteArrayAsync(array, 0, array.Length);
             
             return new OkResult();
