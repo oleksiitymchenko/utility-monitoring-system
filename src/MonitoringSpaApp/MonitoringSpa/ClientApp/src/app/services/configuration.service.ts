@@ -111,8 +111,8 @@ export class ConfigurationService {
     public fallbackBaseUrl = '';
     public registerUrl = environment.registerUrl;
     public controllerRegistryUrl = environment.controllerRegistryUrl;
-    public TelemetryDataUrl = environment.telemetryDataUrl;
-    public DashboardDataUr = environment.dashboardDatUrl;
+    public telemetryDataUrl = environment.telemetryDataUrl;
+    public dashboardDataUr = environment.dashboardDatUrl;
     // ***End of defaults***
 
     private _language: string = null;

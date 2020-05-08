@@ -15,12 +15,12 @@ namespace MonitoringSpa.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme)]
-    public class TelemetryRecordController : ControllerBase
+    public class TelemetryDataController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public TelemetryRecordController(
+        public TelemetryDataController(
             ApplicationDbContext context, 
             UserManager<ApplicationUser> userManager)
         {
@@ -42,7 +42,9 @@ namespace MonitoringSpa.Controllers
                         y => y.Id, 
                         (r, j) => new { telrec = r, conreg = j })
                     .Where(tr => tr.conreg.ApplicationUserId == user.Id)
-                    .Select(f => f.telrec).ToListAsync();
+                    .Select(f => f.telrec)
+                    .Include(f => f.ControllerRegistry)
+                    .ToListAsync();
                 return list;
             }
             catch (Exception ex)

@@ -76,7 +76,7 @@
                 <div class="modal-body">
                     <form *ngIf="formResetToggle" name="registryEditorForm" #f="ngForm" novalidate
                           (ngSubmit)="f.form.valid ? save() :
-                      (!registryName.valid && showErrorAlert('Task name is required', 'Please enter a name for the task'));">
+                      (!registryName.valid && showErrorAlert('Task name is required', 'Please enter a name'));">
 
                         <div class="form-group row has-feedback-icon">
                             <label class="col-form-label col-md-3" for="registryId">Identifier:</label>

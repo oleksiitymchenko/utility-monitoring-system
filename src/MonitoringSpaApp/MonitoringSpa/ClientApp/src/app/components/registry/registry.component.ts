@@ -150,7 +150,7 @@ export class RegistryComponent implements OnInit, OnDestroy {
     }
 
     delete(row) {
-        this.alertService.showDialog('Are you sure you want to delete the task?', DialogType.confirm, () => this.deleteHelper(row));
+        this.alertService.showDialog('Are you sure you want to delete the registry?', DialogType.confirm, () => this.deleteHelper(row));
     }
 
     deleteHelper(row) {
