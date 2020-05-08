@@ -1,1 +1,130 @@
-<p>registry works!</p>
+<div class="container">
+
+    <header class="pageHeader">
+        <h3><i class="fa fa-microchip fa-lg page-caption" aria-hidden="true"></i> Registries </h3>
+    </header>
+
+    <div [@fadeInOut]>
+        <div class="row control-box">
+            <div class="col-lg-8">
+                <div class="form-group search-box">
+                    <search-box (searchChange)="onSearchChanged($event)" placeholder="Search for registry..."></search-box>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <ul class="nav flex-column flex-lg-row">
+                    <li class="nav-item toolbaritem">
+                        <a class="nav-link" href="javascript:;" (click)="addRegistry()"><i class="fa fa-plus"></i> Add registry</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <ngx-datatable class="material colored-header sm table-hover"
+                   [loadingIndicator]="loadingIndicator"
+                   [rows]="rows"
+                   [rowHeight]="35"
+                   [headerHeight]="35"
+                   [footerHeight]="35"
+                   [columns]="columns"
+                   [scrollbarV]="verticalScrollbar"
+                   [columnMode]="'force'">
+    </ngx-datatable>
+
+    <ng-template #idHeaderTemplate>
+        <span class="inline-label datatable-header-cell-label">
+            <i class="fa fa-id-card-o"></i> Pusher id
+        </span>
+    </ng-template>
+
+    <ng-template #idTemplate let-row="row" let-value="value">
+        <span class="inline-label" [class.completed]="row.completed" attr.title="Identifier - {{value}}">
+            {{value}}
+        </span>
+    </ng-template>
+
+    <ng-template #nameTemplate let-row="row" let-value="value">
+        <span *ngIf="!editing[row.$$index + '-name']" class="inline-label" [class.completed]="row.completed" attr.title="Double click to edit - {{value}}" (dblclick)="editing[row.$$index + '-name'] = true">
+            {{value}}
+        </span>
+        <input *ngIf="editing[row.$$index + '-name']" class="inline-editor" autofocus (blur)="updateValue($event, 'name', value, row)" type="text" [value]="value" />
+    </ng-template>
+
+    <ng-template #descriptionTemplate let-row="row" let-value="value">
+        <span *ngIf="!editing[row.$$index + '-description']" class="inline-label" [class.completed]="row.completed" attr.title="Double click to edit - {{value}}" (dblclick)="editing[row.$$index + '-description'] = true">
+            {{value}}
+        </span>
+        <input *ngIf="editing[row.$$index + '-description']" class="inline-editor" autofocus (blur)="updateValue($event, 'description', value, row)" type="text" [value]="value" />
+    </ng-template>
+
+
+    <ng-template #actionsTemplate let-row="row">
+        <a class="btn btn-link btn-sm" href="javascript:;" tooltip="Delete" container="body" (click)="delete(row)"><i class="fa fa-times"></i></a>
+    </ng-template>
+
+
+    <div class="modal fade" bsModal #editorModal="bs-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title float-left"><i class="fa fa-tasks"></i> Register new counter</h4>
+                    <button type="button" class="close" title="Close" (click)="editorModal.hide()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form *ngIf="formResetToggle" name="registryEditorForm" #f="ngForm" novalidate
+                          (ngSubmit)="f.form.valid ? save() :
+                      (!registryName.valid && showErrorAlert('Task name is required', 'Please enter a name for the task'));">
+
+                        <div class="form-group row has-feedback-icon">
+                            <label class="col-form-label col-md-3" for="registryId">Identifier:</label>
+                            <div class="col-md-9">
+                                <input autofocus type="text" id="registryId" name="registryId" placeholder="Enter counter id" class="form-control" [ngClass]="{'is-valid': f.submitted && registryId.valid, 'is-invalid' : f.submitted && !registryId.valid}"
+                                       [(ngModel)]="registryEdit.id" #registryId="ngModel" required/>
+                                <i *ngIf="f.submitted" class="fa form-control-feedback" [ngClass]="{'fa-check': registryId.valid, 'fa-times' : !registryId.valid}" aria-hidden="true"></i>
+                                <span *ngIf="f.submitted && !registryId.valid" class="invalid-feedback">
+                                    Id is required
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row has-feedback-icon">
+                            <label class="col-form-label col-md-3" for="registryName">Name:</label>
+                            <div class="col-md-9">
+                                <input autofocus type="text" id="registryName" name="registryName" placeholder="Enter counter name" class="form-control" [ngClass]="{'is-valid': f.submitted && registryName.valid, 'is-invalid' : f.submitted && !registryName.valid}"
+                                       [(ngModel)]="registryEdit.name" #registryName="ngModel" required />
+                                <i *ngIf="f.submitted" class="fa form-control-feedback" [ngClass]="{'fa-check': registryName.valid, 'fa-times' : !registryName.valid}" aria-hidden="true"></i>
+                                <span *ngIf="f.submitted && !registryName.valid" class="invalid-feedback">
+                                    Name is required
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row description-form-group">
+                            <label class="col-form-label col-md-3" for="registryDescription">Description:</label>
+                            <div class="col-md-9">
+                                <input type="text" id="registryDescription" name="registryDescription" placeholder="Enter counter description" class="form-control" [(ngModel)]="registryEdit.description" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr class="edit-last-separator-hr" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group actionBtn-form-group">
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-primary">Add registry</button>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

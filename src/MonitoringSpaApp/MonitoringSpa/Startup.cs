@@ -20,6 +20,7 @@ using MonitoringSpa.Helpers;
 using System;
 using System.Collections.Generic;
 using AppPermissions = DAL.Core.ApplicationPermissions;
+using Newtonsoft.Json;
 
 namespace MonitoringSpa
 {
@@ -109,7 +110,11 @@ namespace MonitoringSpa
             // Add cors
             services.AddCors();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options => {
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    options.SerializerSettings.MaxDepth = 1;
+                });
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

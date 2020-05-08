@@ -110,6 +110,9 @@ export class ConfigurationService {
     public loginUrl = environment.loginUrl;
     public fallbackBaseUrl = '';
     public registerUrl = environment.registerUrl;
+    public controllerRegistryUrl = environment.controllerRegistryUrl;
+    public TelemetryDataUrl = environment.telemetryDataUrl;
+    public DashboardDataUr = environment.dashboardDatUrl;
     // ***End of defaults***
 
     private _language: string = null;

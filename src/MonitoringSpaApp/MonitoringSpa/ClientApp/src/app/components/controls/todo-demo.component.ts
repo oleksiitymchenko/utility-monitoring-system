@@ -99,7 +99,7 @@ export class TodoDemoComponent implements OnInit, OnDestroy {
     const gT = (key: string) => this.translationService.getTranslation(key);
 
     this.columns = [
-      { prop: 'completed', name: '', width: 30, headerTemplate: this.statusHeaderTemplate, cellTemplate: this.statusTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false },
+      { prop: 'id', name: '', width: 80, headerTemplate: this.statusHeaderTemplate, cellTemplate: this.statusTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false },
       { prop: 'name', name: gT('todoDemo.management.Task'), cellTemplate: this.nameTemplate, width: 200 },
       { prop: 'description', name: gT('todoDemo.management.Description'), cellTemplate: this.descriptionTemplate, width: 500 },
       { name: '', width: 80, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false }
@@ -169,7 +169,8 @@ export class TodoDemoComponent implements OnInit, OnDestroy {
     });
   }
 
-  save() {
+    save() {
+
     this.rowsCache.splice(0, 0, this.taskEdit);
     this.rows.splice(0, 0, this.taskEdit);
     this.refreshDataIndexes(this.rowsCache);

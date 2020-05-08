@@ -2,37 +2,54 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DAL;
 using DAL.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using IdentityServer4.AccessTokenValidation;
 
 namespace MonitoringSpa.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme)]
     public class ControllerRegistryController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ControllerRegistryController(ApplicationDbContext context)
+        public ControllerRegistryController(
+            ApplicationDbContext context, 
+            UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: api/ControllerRegistry
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ControllerRegistry>>> GetControllerRegistry()
         {
-            return await _context.ControllerRegistry.ToListAsync();
+            try
+            {
+                var user = await _userManager.GetUserAsync(User);
+                var list = await _context.ControllerRegistry.Where(x => x.ApplicationUserId == user.Id).ToListAsync();
+                return list;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         // GET: api/ControllerRegistry/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ControllerRegistry>> GetControllerRegistry(Guid id)
         {
-            var controllerRegistry = await _context.ControllerRegistry.FindAsync(id);
+            var user = await _userManager.GetUserAsync(User);
+            var controllerRegistry = await _context.ControllerRegistry.FirstOrDefaultAsync(x => x.Id == id && user.Id == x.ApplicationUserId);
 
             if (controllerRegistry == null)
             {
@@ -52,25 +69,10 @@ namespace MonitoringSpa.Controllers
             {
                 return BadRequest();
             }
-
-            _context.Entry(controllerRegistry).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ControllerRegistryExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            var first = await _context.ControllerRegistry.FirstOrDefaultAsync(x => x.Id == id);
+            first.Name = controllerRegistry.Name;
+            first.Description = controllerRegistry.Description;
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 
