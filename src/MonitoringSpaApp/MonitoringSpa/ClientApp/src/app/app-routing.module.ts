@@ -11,6 +11,8 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { Utilities } from './services/utilities';
 import { RegisterComponent } from './components/register/register.component';
+import { RegistryComponent } from './components/registry/registry.component';
+import { CounterinfoComponent } from './components/counterinfo/counterinfo.component';
 
 
 
@@ -37,7 +39,9 @@ export class LowerCaseUrlSerializer extends DefaultUrlSerializer {
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard], data: { title: 'Home' } },
-    { path: 'login', component: LoginComponent, data: { title: 'Login' } },
+    { path: 'login', component: LoginComponent, data: { title: 'Registry' } },
+    { path: 'registry', component: RegistryComponent, data: { title: 'Registry' } },
+    { path: 'counterinfo', component: CounterinfoComponent, data: { title: 'Login' } },
     { path: 'register', component: RegisterComponent, data: { title: 'Register' } },
     { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard], data: { title: 'Customers' } },
     { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard], data: { title: 'Settings' } },

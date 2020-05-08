@@ -56,6 +56,8 @@ import { UsersManagementComponent } from './components/controls/users-management
 import { RolesManagementComponent } from './components/controls/roles-management.component';
 import { RoleEditorComponent } from './components/controls/role-editor.component';
 import { RegisterComponent } from './components/register/register.component';
+import { CounterinfoComponent } from './components/counterinfo/counterinfo.component';
+import { RegistryComponent } from './components/registry/registry.component';
 
 
 @NgModule({
@@ -101,7 +103,9 @@ import { RegisterComponent } from './components/register/register.component';
         BootstrapToggleDirective,
         BootstrapSelectDirective,
         BootstrapDatepickerDirective,
-        GroupByPipe
+        GroupByPipe,
+        CounterinfoComponent,
+        RegistryComponent
     ],
     providers: [
         { provide: ErrorHandler, useClass: AppErrorHandler },
