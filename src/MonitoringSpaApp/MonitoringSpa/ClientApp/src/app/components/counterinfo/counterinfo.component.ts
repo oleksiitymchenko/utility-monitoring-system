@@ -54,6 +54,9 @@ export class CounterinfoComponent implements OnInit, OnDestroy {
     @ViewChild('actionsTemplate', { static: true })
     actionsTemplate: TemplateRef<any>;
 
+    @ViewChild('dateTemplate', { static: true })
+    dateTemplate: TemplateRef<any>;
+    
     @ViewChild('editorModal', { static: true })
     editorModal: ModalDirective;
 
@@ -71,7 +74,8 @@ export class CounterinfoComponent implements OnInit, OnDestroy {
         this.columns = [
             { prop: 'controllerRegistry.name', name: '', width: 300, headerTemplate: this.controllerNameHeaderTemplate, cellTemplate: this.controllerNameTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false },
             { prop: 'counterValue', name: 'Counter value', cellTemplate: this.counterValueTemplate, width: 200 },
-            { prop: 'processedSuccessful', name: 'Processed successful', cellTemplate: this.processedSuccessfulTemplate, width: 500 },
+            { prop: 'processedSuccessful', name: 'Processed successful', cellTemplate: this.processedSuccessfulTemplate, width: 150 },
+            { prop: 'createdDate', name: 'Date of capturing', cellTemplate: this.dateTemplate, width: 350 },
             { name: '', width: 150, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false }
         ];
     }
@@ -83,6 +87,10 @@ export class CounterinfoComponent implements OnInit, OnDestroy {
         this.telemetryService.getAll().subscribe(
             (data) => {
                 console.log(data);
+                data = data.map(d => {
+                    d.createdDate = new Date(d.createdDate).toLocaleString();
+                    return d;
+                });
                 this.refreshDataIndexes(data);
                 this.rows = data;
                 this.rowsCache = [...data];
@@ -103,8 +111,22 @@ export class CounterinfoComponent implements OnInit, OnDestroy {
         }
     }
 
-    onSearchChanged(value: string) {
-        this.rows = this.rowsCache.filter(r => Utilities.searchArray(value, false, r.name, r.description) || value == 'important' && r.important || value == 'not important' && !r.important);
+    onSearchChanged(searchValue: string) {
+        if (!searchValue) {
+            this.rows = this.rowsCache;
+        }
+        searchValue = searchValue.toLowerCase();
+        this.rows = this.rowsCache.filter(r => {
+            const keys = Object.keys(r);
+            let including = false;
+            keys.forEach(key => {
+                if (!r[key]) return;
+                if (key.toString().toLowerCase().includes("image") || key.toString().toLowerCase().includes("index")) return;
+                const include = r[key].toString().toLowerCase().startsWith(searchValue);
+                if (include) including = true;
+            });
+            return including;
+        });
     }
 
     showErrorAlert(caption: string, message: string) {

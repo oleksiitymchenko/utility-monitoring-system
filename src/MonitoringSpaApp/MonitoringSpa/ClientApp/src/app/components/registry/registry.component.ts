@@ -136,15 +136,15 @@ export class RegistryComponent implements OnInit, OnDestroy {
     }
 
     updateValue(event, cell, cellValue, row) {
-        console.log(row);
+        this.editing[row.$$index + '-' + cell] = false;
+        this.rows[row.$$index][cell] = event.target.value;
+        this.rows = [...this.rows];
+
         const x = new ControllerRegistry(row.id, row.name, row.description);
         this.registryService
             .put(row.id, x)
             .subscribe(
                 res => {
-                    this.editing[row.$$index + '-' + cell] = false;
-                    this.rows[row.$$index][cell] = event.target.value;
-                    this.rows = [...this.rows];
                 },
                 error => { console.log(error); this.showErrorAlert("Unable to update", error); });
     }

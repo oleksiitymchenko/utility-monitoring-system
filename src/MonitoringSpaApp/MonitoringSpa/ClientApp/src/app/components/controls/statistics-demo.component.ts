@@ -2,10 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AlertService, DialogType, MessageSeverity } from '../../services/alert.service';
 import { Subscription, Observable, fromEvent, of, merge } from 'rxjs';
 import { map, distinctUntilChanged } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment.prod';
+import { AuthService } from '../../services/auth.service';
 
 require('chart.js');
-
-
 
 @Component({
   selector: 'statistics-demo',
@@ -15,17 +16,18 @@ require('chart.js');
 export class StatisticsDemoComponent implements OnInit, OnDestroy {
 
   chartData = [
-    { data: [65, 59, 80, 81, 56, 55], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27], label: 'Series B' },
-    { data: [18, 48, 77, 9, 100, 27], label: 'Series C' }
+    { data: [], label: 'Please wait until data is loaded' },
   ];
-  chartLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+    timeclause = "lastweek";
+
+  //chartLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+  chartLabels = [];
   chartOptions = {
     responsive: true,
     title: {
       display: false,
       fontSize: 16,
-      text: 'Important Stuff'
+      text: 'Counter data'
     }
   };
   chartColors = [
@@ -62,14 +64,22 @@ export class StatisticsDemoComponent implements OnInit, OnDestroy {
   windowWidthSub: Subscription;
 
 
-  constructor(private alertService: AlertService) {
-
+    constructor(private alertService: AlertService, private http: HttpClient, private authService: AuthService) {
   }
 
 
-  ngOnInit() {
-    this.timerReference = setInterval(() => this.randomize(), 5000);
+    protected get requestHeaders(): { headers: HttpHeaders | { [header: string]: string | string[]; } } {
+        const headers = new HttpHeaders({
+            Authorization: 'Bearer ' + this.authService.accessToken,
+            'Content-Type': 'application/json',
+            Accept: 'application/json, text/plain, */*'
+        });
 
+        return { headers };
+    }
+
+    ngOnInit() {
+        this.refresh();
     const initialWidth$ = of(window.innerWidth);
     const resizedWidth$ = fromEvent(window, 'resize').pipe(map((event: any) => event.target.innerWidth as number));
     this.windowWidth$ = merge(initialWidth$, resizedWidth$).pipe(distinctUntilChanged());
@@ -82,7 +92,22 @@ export class StatisticsDemoComponent implements OnInit, OnDestroy {
     this.windowWidthSub.unsubscribe();
   }
 
-
+    refresh(): void {
+        const url = `${environment.dashboardDatUrl}/${this.timeclause}`;
+        this.http
+            .get<any>(url, this.requestHeaders)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    this.chartData = [];
+                    this.chartData.push({ data: res.chartData, label: res.chartTitle });
+                    this.chartLabels = res.chartLabels;
+                    console.log(this.chartData);
+                },
+                error => {
+                    this.alertService.showMessage('Error', 'Unable to refresh', MessageSeverity.error);
+                });
+    }
 
   randomize(): void {
     const _chartData = new Array(this.chartData.length);
@@ -99,10 +124,15 @@ export class StatisticsDemoComponent implements OnInit, OnDestroy {
 
   changeChartType(type: string) {
     this.chartType = type;
-  }
+    }
+
+    changeTimeClause(time: string) {
+        this.timeclause = time;
+        this.refresh();
+    }
 
   showMessage(msg: string): void {
-    this.alertService.showMessage('Demo', msg, MessageSeverity.info);
+    this.alertService.showMessage('Info', msg, MessageSeverity.info);
   }
 
   showDialog(msg: string): void {
@@ -116,7 +146,6 @@ export class StatisticsDemoComponent implements OnInit, OnDestroy {
       this.alertService.showStickyMessage('Simulating...', '', MessageSeverity.wait);
 
       setTimeout(() => {
-
         this.alertService.resetStickyMessage();
         this.alertService.showMessage('Demo', `Your settings was successfully configured to \"${value}\"`, MessageSeverity.success);
       }, 2000);

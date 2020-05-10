@@ -16,9 +16,9 @@
           <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <a class="nav-link" routerLink=""><i class="fa fa-home"></i></a>
           </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="canViewCustomers">
+          <!--<li class="nav-item" routerLinkActive="active" *ngIf="canViewCustomers">
             <a class="nav-link" routerLink="/customers">{{'mainMenu.Customers' | translate}}</a>
-          </li>
+          </li>-->
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" routerLink="/counterinfo">{{'mainMenu.CounterInfo' | translate}}</a>
           </li>
@@ -34,11 +34,11 @@
         <span class="app-component navbar-text notifications-popup">{{'app.Welcome' | translate}}</span>
         <a class="app-component nav-link user-name d-inline-block px-1" [popover]="popTemplate" (onHidden)="markNotificationsAsRead()" placement="bottom" [popoverTitle]="notificationsTitle" href="javascript:;" triggers="focus">
           {{userName}}
-          <span *ngIf="newNotificationCount > 0" class="badge badge-pill badge-secondary">{{newNotificationCount}}</span>
+          <!--<span *ngIf="newNotificationCount > 0" class="badge badge-pill badge-secondary">{{newNotificationCount}}</span>-->
         </a>
-        <ng-template #popTemplate>
+        <!--<ng-template #popTemplate>
           <notifications-viewer [isViewOnly]="true"></notifications-viewer>
-        </ng-template>
+        </ng-template>-->
         <span class="app-component navbar-text">, </span>
         <ul class="app-component nav nav-pills ml-lg-2 flex-column flex-lg-row">
           <li class="nav-item" (click)="logout()">
