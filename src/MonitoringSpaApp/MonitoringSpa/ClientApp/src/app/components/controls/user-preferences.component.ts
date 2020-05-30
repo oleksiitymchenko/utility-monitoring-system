@@ -24,8 +24,8 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
     @ViewChild('languageSelector', { static: true })
     languageSelector: BootstrapSelectDirective;
 
-    @ViewChild('homePageSelector', { static: true })
-    homePageSelector: BootstrapSelectDirective;
+    //@ViewChild('homePageSelector', { static: true })
+    //homePageSelector: BootstrapSelectDirective;
 
     constructor(
         private alertService: AlertService,
@@ -41,7 +41,7 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
 
             setTimeout(() => {
                 this.languageSelector.refresh();
-                this.homePageSelector.refresh();
+                //this.homePageSelector.refresh();
                 this.themeSelectorToggle = true;
             });
         });

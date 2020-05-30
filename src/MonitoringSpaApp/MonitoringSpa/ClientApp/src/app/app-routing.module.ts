@@ -45,7 +45,7 @@ const routes: Routes = [
     { path: 'register', component: RegisterComponent, data: { title: 'Register' } },
     { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard], data: { title: 'Customers' } },
     { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard], data: { title: 'Settings' } },
-    { path: 'about', component: AboutComponent, data: { title: 'About Us' } },
+    { path: 'about', component: AboutComponent, data: { title: 'About' } },
     { path: 'home', redirectTo: '/', pathMatch: 'full' },
     { path: '**', component: NotFoundComponent, data: { title: 'Page Not Found' } }
 ];
