@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DAL.Core.AccountManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QICAFABAAAAQBSAAAQAAAAQgAAABABAACAAAAFyEAAE=</HashCode>
+      <FileName>Core\AccountManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DAL.Core.ApplicationPermissions" Collapsed="true">
+    <Position X="12.25" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAAECBAAAQAAAACAAAAAAICAAAACAQAgAAAAAAAAAAA=</HashCode>
+      <FileName>Core\ApplicationPermissions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.Core.ApplicationPermission" Collapsed="true">
+    <Position X="10.25" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAgAAAEAAAAAAQAAAAAAAAAAAAgAAAAAAE=</HashCode>
+      <FileName>Core\ApplicationPermissions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.Core.ClaimConstants" Collapsed="true">
+    <Position X="8.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\ProfileConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.Core.PropertyConstants" Collapsed="true">
+    <Position X="10.25" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAgAAAAAAIAAA=</HashCode>
+      <FileName>Core\ProfileConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.Core.ScopeConstants" Collapsed="true">
+    <Position X="12.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\ProfileConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DAL.Core.Interfaces.IAccountManager" Collapsed="true">
+    <Position X="8.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QICAEABAAAAQBSAAAQAAAAQAAAABABAACAAAAFyEAAE=</HashCode>
+      <FileName>Core\Interfaces\IAccountManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DAL.Core.Gender" Collapsed="true">
+    <Position X="10.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAA=</HashCode>
+      <FileName>Core\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DAL.Core.CounterType" Collapsed="true">
+    <Position X="12.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Core\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
