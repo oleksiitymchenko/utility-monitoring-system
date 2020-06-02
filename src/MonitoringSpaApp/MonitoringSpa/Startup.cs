@@ -113,7 +113,7 @@ namespace MonitoringSpa
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options => {
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                    options.SerializerSettings.MaxDepth = 1;
+                    options.SerializerSettings.MaxDepth = 3;
                 });
 
             // In production, the Angular files will be served from this directory

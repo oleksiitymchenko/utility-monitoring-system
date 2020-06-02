@@ -5,6 +5,7 @@ import { map, distinctUntilChanged } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment.prod';
 import { AuthService } from '../../services/auth.service';
+import { Color } from 'ng2-charts';
 
 require('chart.js');
 
@@ -78,6 +79,20 @@ export class StatisticsDemoComponent implements OnInit, OnDestroy {
         return { headers };
     }
 
+    public chartColors2: Color[] = [
+        { backgroundColor: '#ff0000' },
+        { backgroundColor: '#008800' },
+        { backgroundColor: '#0000ff' },
+        { backgroundColor: '#aaaa00' },
+    ]
+
+    public colors = [
+        { backgroundColor: "red" },
+        { backgroundColor: "green" },
+        { backgroundColor: "blue" },
+        { backgroundColor: "yellow" }
+    ];
+
     ngOnInit() {
         this.refresh();
     const initialWidth$ = of(window.innerWidth);
@@ -108,11 +123,14 @@ export class StatisticsDemoComponent implements OnInit, OnDestroy {
                     this.alertService.showMessage('Error', 'Unable to refresh', MessageSeverity.error);
                 });
     }
-
+    random_rgba() {
+        const o = Math.round, r = Math.random, s = 255;
+    return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+}
   randomize(): void {
     const _chartData = new Array(this.chartData.length);
     for (let i = 0; i < this.chartData.length; i++) {
-      _chartData[i] = { data: new Array(this.chartData[i].data.length), label: this.chartData[i].label };
+        _chartData[i] = { data: new Array(this.chartData[i].data.length), label: this.chartData[i].label };
 
       for (let j = 0; j < this.chartData[i].data.length; j++) {
         _chartData[i].data[j] = Math.floor((Math.random() * 100) + 1);

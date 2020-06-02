@@ -131,7 +131,9 @@ export class RegistryComponent implements OnInit, OnDestroy {
                     this.rows = [...this.rows];
                     this.registryEdit = {};
                 },
-                error => { this.showErrorAlert("Unable to create", error) });
+                error => {
+                    this.showErrorAlert("Unable to create", error.error.errors.id[0]);
+                });
         this.editorModal.hide();
     }
 
