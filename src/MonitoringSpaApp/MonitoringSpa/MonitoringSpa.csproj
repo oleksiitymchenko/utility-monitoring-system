@@ -42,7 +42,9 @@
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0-dev-00032" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc4" />
   </ItemGroup>
-
+  <ItemGroup>
+    <ProjectCapability Include="CSharp;Managed;ClassDesigner" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Remove="ClientApp\dist\**" />
     <Compile Remove="Logs\**" />

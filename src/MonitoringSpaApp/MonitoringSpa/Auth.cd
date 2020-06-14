@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MonitoringSpa.Authorization.AccountManagementOperations" Collapsed="true">
+    <Position X="5.25" Y="6" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAABBgAAEAAEAAAAAAEAAAABA=</HashCode>
+      <FileName>Authorization\Policies.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonitoringSpa.Authorization.AssignRolesAuthorizationRequirement" Collapsed="true">
+    <Position X="8.25" Y="6" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\AssignRolesAuthorizationRequirement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MonitoringSpa.Authorization.ManageUserAuthorizationHandler" Collapsed="true">
+    <Position X="11.5" Y="7" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\UserAccountAuthorizationRequirement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonitoringSpa.Authorization.Policies" Collapsed="true">
+    <Position X="5.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAABAAAAAAAAAQAAgAIAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Authorization\Policies.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonitoringSpa.Authorization.ProfileService" Collapsed="true">
+    <Position X="5.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAEAAAIAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Authorization\ProfileService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MonitoringSpa.Authorization.UserAccountAuthorizationRequirement" Collapsed="true">
+    <Position X="8.25" Y="7" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\UserAccountAuthorizationRequirement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MonitoringSpa.Authorization.ViewRoleAuthorizationHandler" Collapsed="true">
+    <Position X="11.5" Y="6" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\ViewRoleAuthorizationRequirement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonitoringSpa.Authorization.ViewRoleAuthorizationRequirement" Collapsed="true">
+    <Position X="8.25" Y="8" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\ViewRoleAuthorizationRequirement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MonitoringSpa.Authorization.ViewUserAuthorizationHandler" Collapsed="true">
+    <Position X="11.5" Y="8" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\UserAccountAuthorizationRequirement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -4,12 +4,12 @@
 #include "Arduino.h"
 
 #define uS_TO_S_FACTOR 1000000ULL  /* Conversion factor for micro seconds to seconds */
-#define TIME_TO_SLEEP  3600        /* Time ESP32 will go to sleep (in seconds) */
+#define TIME_TO_SLEEP  3600000        /* Time ESP32 will go to sleep (in seconds) */
 RTC_DATA_ATTR int bootCount = 0;
 
 const char* ssid = "ASUS-HOME";
 const char* password = "5434202543420";
-const char *post_url = "https://backendfunctions20200328192951.azurewebsites.net/api/Function1";
+const char *post_url = "https://oleksii-thesis-serverless-plan.azurewebsites.net/api/upload-blob/E4BACBBE-EAE6-40A6-A918-A0C36486EB37";
 
 bool internet_connected = false;
 long current_millis;

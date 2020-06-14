@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MonitoringSpa.ViewModels.ClaimViewModel" Collapsed="true">
+    <Position X="5.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAgAAAAAAA=</HashCode>
+      <FileName>ViewModels\ClaimViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonitoringSpa.ViewModels.DashboardData" Collapsed="true">
+    <Position X="5.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAQAACAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>ViewModels\DashboardData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonitoringSpa.ViewModels.PermissionViewModel" Collapsed="true">
+    <Position X="7.25" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAhAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAE=</HashCode>
+      <FileName>ViewModels\PermissionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonitoringSpa.ViewModels.RoleViewModel" Collapsed="true">
+    <Position X="7.25" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AACCAAAAAAAgAAAAAAAAAAQAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\RoleViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonitoringSpa.ViewModels.UserViewModel" Collapsed="true">
+    <Position X="1.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\UserViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonitoringSpa.ViewModels.UserEditViewModel" Collapsed="true">
+    <Position X="3.5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAgAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>ViewModels\UserViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonitoringSpa.ViewModels.UserBaseViewModel" Collapsed="true">
+    <Position X="2.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAIAAAAEAQAAAAAAAAAAAgQAAAAAIAAA=</HashCode>
+      <FileName>ViewModels\UserViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

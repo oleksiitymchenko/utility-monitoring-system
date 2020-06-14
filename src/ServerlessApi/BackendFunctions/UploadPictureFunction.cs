@@ -29,7 +29,7 @@ namespace BackendFunctions
 
         [FunctionName("upload-blob")]
         public async Task<IActionResult> RunAsync(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "upload-blob/{microcontrollerId}")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "upload-blob/{microcontrollerId}")] HttpRequest req,
             string microcontrollerId,
             ILogger log)
         {
