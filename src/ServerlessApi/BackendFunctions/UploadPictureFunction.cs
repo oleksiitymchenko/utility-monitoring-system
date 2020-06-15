@@ -85,7 +85,7 @@ namespace BackendFunctions
             };
             dbContext.TelemetryRecord.Add(rec);
             dbContext.SaveChanges();
-            log.LogInformation("Added record to context {rec}", JsonSerializer.Serialize(rec, new JsonSerializerOptions { MaxDepth = 3 }) ;
+            log.LogInformation("Added record to context {rec}", JsonSerializer.Serialize(rec, new JsonSerializerOptions { MaxDepth = 3 }));
             var ms = new MemoryStream();
             req.Body.CopyTo(ms);
             var array = ms.ToArray();
