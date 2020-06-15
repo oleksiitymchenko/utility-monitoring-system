@@ -116,7 +116,7 @@ void setup()
     return;
   }
 
-  digitalWrite(FLASHLIGHT, HIGH);
+  //digitalWrite(FLASHLIGHT, HIGH);
   take_send_photo();
   digitalWrite(FLASHLIGHT, LOW);
   
