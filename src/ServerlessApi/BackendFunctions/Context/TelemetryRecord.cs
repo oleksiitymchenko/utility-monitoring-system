@@ -9,6 +9,7 @@ namespace ServerlessApi.Context
         public Guid ControllerRegistryId { get; set; }
         public ControllerRegistry ControllerRegistry { get; set; }
         public string ImageUrl { get; set; }
+        public string BlobName { get; set; }
         public long CounterValue { get; set; }
         public bool ProcessedSuccessful { get; set; }
 

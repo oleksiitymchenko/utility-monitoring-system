@@ -60,7 +60,7 @@ namespace BackendFunctions
                         {
                             ProcessedSuccessful = true,
                             CounterValue = int.Parse(targetCounterValue),
-                            CreatedOn = DateTime.UtcNow,
+                            CreatedDate = DateTime.UtcNow,
                             ImageUrl = blob.Uri.ToString(),
                             BlobName = pictureName
                         });

@@ -10,7 +10,6 @@ RTC_DATA_ATTR int bootCount = 0;
 const char* ssid = "ASUS-HOME";
 const char* password = "5434202543420";
 const char *post_url = "https://oleksii-thesis-serverless-plan.azurewebsites.net/api/upload-blob/E4BACBBE-EAE6-40A6-A918-A0C36486EB37";
-
 bool internet_connected = false;
 long current_millis;
 long last_capture_millis = 0;

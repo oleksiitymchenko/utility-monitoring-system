@@ -9,6 +9,7 @@ namespace DAL.Models
         public ControllerRegistry ControllerRegistry { get; set; }
         public string ImageUrl { get; set; }
         public long CounterValue { get; set; }
+        public string BlobName { get; set; }
         public bool ProcessedSuccessful { get; set; }
     }
 }
